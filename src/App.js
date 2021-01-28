@@ -50,9 +50,9 @@ const App = () =>{
   }
 
   const changePerPage = (e) =>{
-    const val = e.target.value
+    var val = e.target.value
+    if(val==0){val='1'}
     setPerPage(val)
-    console.log(val)
   }
 
   return(
