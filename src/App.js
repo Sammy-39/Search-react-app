@@ -17,12 +17,11 @@ const App = () =>{
 
     const resData = await res.json()
 
-    const dataSlice = resData.slice(offset, offset + perPage)
+    const dataSlice = resData.slice(offset*perPage, (offset*perPage)+perPage )
     const postData = dataSlice.map(pd => <div key={pd.id} className="card">
                                         <p>{pd.name}</p>
                                         <p>{pd.email}</p>
-                                      </div>
-                              )
+                                      </div>)
     setData(postData)
     setCopy(postData)
     setPageCount(Math.ceil(resData.length / perPage))
@@ -34,7 +33,6 @@ const App = () =>{
 
   const handlePageClick = (e) =>{
     const selectedPage = e.selected
-    console.log(selectedPage)
     setOffset(selectedPage+1)
   }
 
