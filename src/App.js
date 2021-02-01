@@ -16,7 +16,6 @@ const App = () =>{
     const res = await fetch('https://gist.githubusercontent.com/rvsp/add40254aa126f045837fa5b51f47f1f/raw/4d724bfabf4cce7379a386e23bef6576ab99a2f9/pagination.json')
 
     const resData = await res.json()
-
     const dataSlice = resData.slice(offset*perPage, (offset*perPage)+perPage )
     const postData = dataSlice.map(pd => <div key={pd.id} className="card">
                                         <p>{pd.name}</p>
@@ -29,11 +28,13 @@ const App = () =>{
 
   useEffect(()=>{
     getData()
-  },  [offset,perPage] )
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset, perPage] )
 
   const handlePageClick = (e) =>{
     const selectedPage = e.selected
-    setOffset(selectedPage+1)
+    setOffset(selectedPage)
   }
 
   const searchChange = (e) =>{
@@ -49,8 +50,8 @@ const App = () =>{
 
   const changePerPage = (e) =>{
     var val = e.target.value
-    if(val==0){val='1'}
-    setPerPage(val)
+    if(val==="0"){val='1'}
+    setPerPage(parseInt(val))
   }
 
   return(
