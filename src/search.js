@@ -8,7 +8,7 @@ const SearchForm = (props) =>{
     return(
         <form className="form" onSubmit={()=>{return false}}>
             <SearchIcon />
-            <input type="text" className="form-control search-input" placeholder="Search To-do list" value={props.val} onChange={props.change}/>
+            <input type="text" className="form-control search-input" placeholder="Search name" value={props.val} onChange={props.change}/>
         </form>
     )
 }
